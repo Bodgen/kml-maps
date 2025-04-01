@@ -1,0 +1,37 @@
+<div id="map" style="height: 600px; width: 100%;"></div>
+
+<div class="controls-container" style="margin-top: 10px; width: 100%;">
+  <div class="map-selector" style="margin-bottom: 10px;">
+    <label for="map-select">Select Map: </label>
+    <select
+      id="map-select"
+      [ngModel]="selectedMap()"
+      (ngModelChange)="selectMap($event)"
+      style="padding: 5px; margin-left: 5px;"
+    >
+      <option value="">Select a map</option>
+      <option value="ukraine_kyiv_obl-1942">Ukraine Kyiv Oblast (1942)</option>
+      <option value="ulyanovsk_Mende-1versta">Ulyanovsk Mende (1 versta)</option>
+    </select>
+  </div>
+</div>
+
+<div class="opacity-control" style="margin-top: 10px; width: 100%;">
+  <label for="opacity-slider">Map's opacity: {{ opacity * 100 | number:'1.0-0' }}%</label>
+  <input
+    id="opacity-slider"
+    type="range"
+    min="0"
+    max="1"
+    step="0.01"
+    [(ngModel)]="opacity"
+    (ngModelChange)="updateOpacity()"
+    style="width: 100%;"
+  >
+</div>
+<button
+  (click)="isDisplayLayer.set(!isDisplayLayer())"
+  style="margin-top: 10px; padding: 5px 10px;"
+>
+  {{ isDisplayLayer() ? 'Hide' : 'Show' }} Old Map
+</button>
